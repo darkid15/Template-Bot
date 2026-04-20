@@ -1,9 +1,8 @@
 # Template Bot
 A clean, modular WhatsApp bot starter template built to teach proper bot architecture, scalable code structure, and beginner-friendly development.
-No spaghetti code.
-No 5,000-line index.js files.
-No copy-paste chaos.
-Just readable, extendable, production-style bot development.
+```js
+```
+No spaghetti code. No 5,000-line index.js files. No copy-paste chaos. Just readable, extendable, production-style bot development.
 Built for developers who want to understand, not just copy-paste.
 
 ## Why This Exists
@@ -43,52 +42,25 @@ This project exists to show:
 - Extendable database support
 - Production-style development workflow
 
+<div>
+    <a href="https://manganato.com/">Click me</a>
+    <img src="src/assets/logo.jpg">
+</div>
+
 ## Project Structure
-```bash
+```
 template-bot/
-│
-├── src/
-│   │
-│   ├── core/
-│   │   ├── client.js
-│   │   ├── loader.js
-│   │   ├── handler.js
-│   │   └── logger.js
-│   │
-│   ├── commands/
-│   │   ├── general/
-│   │   │   ├── ping.js
-│   │   │   └── help.js
-│   │   │
-│   │   ├── owner/
-│   │   │   └── eval.js
-│   │   │
-│   │   └── fun/
-│   │       └── meme.js
-│   │
-│   ├── events/
-│   │   ├── messages.upsert.js
-│   │   ├── group-participants.update.js
-│   │   └── connection.update.js
-│   │
-│   ├── utils/
-│   │   ├── prefix.js
-│   │   ├── parser.js
-│   │   ├── formatter.js
-│   │   └── cooldown.js
-│   │
-│   ├── config/
-│   │   └── settings.js
-│   │
-│   ├── database/
-│   │   └── db.js
-│   │
-│   └── index.js
-│
-├── package.json
-├── .env
-├── README.md
-└── .gitignore
+ |_ src/
+ |   |__ commands/
+ |   |__ configs/
+ |   |__ handlers/
+ |   |__ socket/
+ |   |__ utils/
+ |   |__ index.js
+ |_ package.json
+ |_ .env
+ |_ README.md
+ |_ .gitignore
 ```
 
 ## Philosophy
@@ -103,38 +75,36 @@ If you want **instant bot glory** with *zero understanding*—
 ***this is not your repo***.
 
 ## Beginner Rule
-Every file should teach.
-Not just work.
-Every important function is explained.
-Every module exists for a reason.
-This project is designed to help beginners understand architecture, not just run commands.
-Because understanding > copying.
-Always.
+1. Every file should teach.
+2. Not just work.
+3. Every important function is explained.
+4. Every module exists for a reason.
+5. This project is designed to help beginners understand architecture, not just run commands.
+Because understanding > copying. **Always**.
 ### Example
 Instead of this:
 ```js
 if (command === "ping") {
-   reply("pong")
-}
+   reply("pong");
+};
 ```
 we do this:
 ```js
-const command = commands.get(cmd)
-if (command) command.run()
+const command = commands.get(cmd);
+if (command) command.execute();
 ```
 Because scalable code matters.
 
 ## Future Plans
-Welcome / Goodbye system
-Anti-link system
-Anti-spam system
-Economy system
-Plugin support
-Hot reload
-Middleware system
-Advanced permissions
-Dashboard support
-Full database integration
+- Welcome / Goodbye system
+- Anti-link system
+- Anti-spam system
+- Economy system
+- Plugin support
+- Middleware system
+- Advanced permissions
+- Dashboard support
+- Full database integration
 This is a foundation.
 **Build on it**.
 ## Installation
