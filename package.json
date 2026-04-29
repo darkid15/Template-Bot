@@ -2,9 +2,11 @@
   "name": "template-bot",
   "version": "1.0.0",
   "description": "A clean, modular WhatsApp bot starter template built to teach proper bot architecture, scalable code structure, and beginner-friendly development. ```js ``` No spaghetti code. No 5,000-line index.js files. No copy-paste chaos. Just readable, extendable, production-style bot development. Built for developers who want to understand, not just copy-paste.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js",
+    "clearsess": "rm -rf auth && node src/index.js",
+    "qr": "node src/index.js --qr"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,11 @@
   },
   "homepage": "https://github.com/darkid15/Template-Bot#readme",
   "dependencies": {
-    "baileys": "^7.0.0-rc.9"
+    "baileys": "^7.0.0-rc.9",
+    "chalk": "^5.6.2",
+    "dotenv": "^17.4.2",
+    "fs-extra": "^11.3.4",
+    "groq-sdk": "^1.1.2",
+    "qrcode-terminal": "^0.12.0"
   }
 }

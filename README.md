@@ -1,9 +1,8 @@
 # Template Bot
-A clean, modular WhatsApp bot starter template built to teach proper bot architecture, scalable code structure, and beginner-friendly development.
-```js
-```
-No spaghetti code. No 5,000-line index.js files. No copy-paste chaos. Just readable, extendable, production-style bot development.
-Built for developers who want to understand, not just copy-paste.
+<p>Welcome to Template Bot `beginner` branch.</p>
+<p>A clean, modular WhatsApp bot starter template built to teach proper bot architecture, scalable code structure, and beginner-friendly development.</p>
+<p>No spaghetti code. No 5,000-line index.js files. No copy-paste chaos. Just readable, extendable, production-style bot development.</p>
+<p>Built for developers who want to understand, not just copy-paste.</p>
 
 ## Why This Exists
 Most WhatsApp bot repositories on GitHub look like this:
@@ -19,47 +18,69 @@ or **worse**:
 ```
 That teaches beginners the wrong way to build software.
 This project exists to show:
-- This is how bots should be structured.
+- How bots should be structured.
 - Clean code.
 - Modular architecture.
 - Scalable systems.
 - Maintainable projects.
 - Not spaghetti.
 
+## Table of Contents
+- [Features](#features)
+    - [Main](#main)
+    - [Commands](#commands)
+    - [Extra Utilities](#extra)
+- [Project Structure](#project-structure)
+- [Philosophy](#philosophy)
+- [Feature Plans](#template-bot-feature-plans)
+- [Installation](#installation)
+    - [Clone The Repo](#clone-the-repo)
+    - [Install Dependencies](#install-all-dependencies)
+    - [Start The Bot](#start-the-bot)
+- [License](#license)
+
 ## Features
-- Modular command handler
+### Main 
 - Event-based architecture
-- Command auto-loader
-- Event auto-loader
 - Clean folder structure
 - Beginner-friendly code comments
 - Scalable project design
+- Event auto-loader
+### Commands 
+- Modular command handler
+- Command auto-loader
 - Easy command creation
 - Group feature support
+### Extra 
 - Cooldown system
 - Permissions system
 - Logging system
-- Extendable database support
 - Production-style development workflow
 
-<div>
-    <a href="https://manganato.com/">Click me</a>
-    <img src="src/assets/logo.jpg">
-</div>
 
 ## Project Structure
 ```
 template-bot/
  |_ src/
+ |   |
  |   |__ commands/
+ |   |
  |   |__ configs/
+ |   |
  |   |__ handlers/
+ |   |
  |   |__ socket/
+ |   |
  |   |__ utils/
+ |   |
  |   |__ index.js
+ |
  |_ package.json
+ |
  |_ .env
+ |
  |_ README.md
+ |
  |_ .gitignore
 ```
 
@@ -74,14 +95,14 @@ It is for developers who want to learn:
 If you want **instant bot glory** with *zero understanding*—
 ***this is not your repo***.
 
-## Beginner Rule
-1. Every file should teach.
-2. Not just work.
-3. Every important function is explained.
-4. Every module exists for a reason.
-5. This project is designed to help beginners understand architecture, not just run commands.
+### Beginner Rule
+1. Every file should teach, not just work.
+2. Every important function is explained.
+3. Every module exists for a reason.
+4. This project is designed to help beginners understand architecture, not just run commands.
+
 Because understanding > copying. **Always**.
-### Example
+#### Example
 Instead of this:
 ```js
 if (command === "ping") {
@@ -93,24 +114,43 @@ we do this:
 const command = commands.get(cmd);
 if (command) command.execute();
 ```
-Because scalable code matters.
+Because scalable code matters. 
 
-## Future Plans
-- Welcome / Goodbye system
-- Anti-link system
-- Anti-spam system
-- Economy system
-- Plugin support
-- Middleware system
-- Advanced permissions
-- Dashboard support
-- Full database integration
+## Template Bot Feature Plans
+| Feature | Status | Branch |
+| --- | --- | --- |
+| Command Handler | ✓ | beginner |
+| Event Loader | ✓ | beginner |
+| Welcome / Goodbye System | x | beginner |
+| Dashboard | x | advanced |
+| Anti-link System | x | advanced |
+| Anti-spam System | x | advanced |
+| Dashboard Support | x | advanced |
+| Plugin Support | x | senior |
+| Middleware System | x | senior |
+| Full Database Integration | x | senior |
+
 This is a foundation.
 **Build on it**.
+
 ## Installation
+### Clone The Repo 
 ```bash
-git clone https://github.com/yourusername/template-bot.git
-cd template-bot
+git clone https://github.com/darkid15/template-bot.git
+```
+### Install All Dependencies
+```bash
+cd Template-Bot
+npm install
+```
+### Start the bot 
+```bash
+npm start
+```
+All together:
+```bash
+git clone https://github.com/darkid15/template-bot.git
+cd Template-Bot
 npm install
 npm start
 ```
@@ -127,13 +167,19 @@ Build structure.
 Build things that last.
 That is what this project is for.
 
-### License
-MIT License
+## License
+MIT License. More info in the [LICENSE](./LICENSE) file.
+
 Use it.
+
 Learn from it.
+
 Improve it.
+
 Teach others.
+
 And please—
+
 stop uploading *8,000-line index.js* files to GitHub.
 
 > If this repo helped you, then give it a star ⭐!
