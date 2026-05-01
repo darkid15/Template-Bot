@@ -14,8 +14,10 @@ let qrRequested = false;
 export default async function handleConnUpdates (sock, update, settings) {
     const { connection, qr, lastDisconnect } = update;
     const { pairCodeLogin, phone, reconnect, isRegistered, master } = settings;
+
+    // if (!connection && qr) handleQrCode(qr);
     
-    if (connection === "connecting") {
+    if (!isRegistered && pairCodeLogin && !pairCodeRequested) {
         info("Bot is connecting...")
         // Request pair code 
         if (!isRegistered && pairCodeLogin && !pairCodeRequested) {
@@ -67,6 +69,7 @@ export default async function handleConnUpdates (sock, update, settings) {
     */
     if (connection === "open") {
         success("Bot is connected!");
+        reconnectInSecs = 4;
         setTimeout(() => {
             sendReply(sock, null, `:success: Template-Bot is connected successfully!\nUse :prefix:menu to see all available commands.`, {
                 jid: `${phone}@s.whatsapp.net`
