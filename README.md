@@ -121,7 +121,8 @@ Because scalable code matters.
 | --- | --- | --- |
 | Command Handler | ✓ | beginner |
 | Event Loader | ✓ | beginner |
-| Welcome / Goodbye System | x | beginner |
+| Welcome / Goodbye System | ✓ | beginner |
+| Auth System | x | beginner |
 | Dashboard | x | advanced |
 | Anti-link System | x | advanced |
 | Anti-spam System | x | advanced |

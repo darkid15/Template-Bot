@@ -2,5 +2,4 @@ node_modules/
 auth/
 package-lock.json
 .env
-groq.js
 .log
