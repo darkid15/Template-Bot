@@ -2,26 +2,29 @@
 
 import createSocket from './socket/index.js';
 import handleSocketEvents from './socket/events/index.js'
-import { setAiConfigs, getAiConfigs } from './utils/darkAi/runtime.js';
 import { info } from './utils/logger.js';
-import dotenv from 'dotenv';
-dotenv.config();
-
-const masterPhone = process.env.MASTER_PHONE;
+import { 
+    BOT_PHONE,
+    MASTER_PHONE 
+} from './configs/index.js';
 
 async function startBot () {
     info("Starting Template Bot...")
-    const sock = await createSocket("auth");
+    const sock = await createSocket("auth");    // Creates a folder in the project root directory named "auth". 
     
-    // Initialize ai configs
     const isRegistered = sock.authState.creds.registered;
-    if (!isRegistered) await setAiConfigs();
+    
+    /*
+        Handles socket events:
+          - sock.ev.on("connection.update", ()=>{...}) 
+          - sock.ev.on("messages.upsert", ()=>{...})  
+    */
     await handleSocketEvents(sock, {
         pairCodeLogin: true,
-        phone: process.env.PHONE || null,
+        phone: BOT_PHONE || null,
         reconnect: startBot,
         isRegistered: isRegistered,
-        master: masterPhone
+        master: MASTER_PHONE
     });
 }
 
