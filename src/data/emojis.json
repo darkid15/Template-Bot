@@ -1,5 +1,5 @@
 {
-    "prefix": "!",
+    "prefix": "/",
     "info": "ℹ️",
     "error": "❌",
     "success": "✅",
@@ -19,6 +19,7 @@
     "skull": "💀",
     "sparkles": "✨",
     "pin": "📌",
+    "pin2": "📍",
     "gear": "⚙️",
     "fix": "🛠",
     "folder": "📂",
@@ -84,5 +85,9 @@
     "internet": "🌐",
     "msgBubble": "💬",
     "candle": "💈",
-    "wave": "👋"
+    "wave": "👋",
+    "phone": "📱",
+    "robot": "🤖",
+    "trashCan": "🗑️",
+    "plug": "🔌"
 }

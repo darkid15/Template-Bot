@@ -9,7 +9,7 @@ import PINO from 'pino';
 import { info, success } from '../utils/logger.js';
 
 export default async function createSocket (authFolder) {
-    info("Creating socket...");
+    info(":plug: Creating socket...");
     /*  First, make sure the sessions folder exists
         Using the regular fs module, it looks like:
         if (!fs.existsSync(authFolder)) {
@@ -19,7 +19,9 @@ export default async function createSocket (authFolder) {
     // Using fs-extra 
     fs.ensureDir(authFolder)    // Creates the directory if it doesn't exist, does nothing if it does. 
     const { state, saveCreds } = await useMultiFileAuthState(authFolder);
-    const { version } = await fetchLatestBaileysVersion();
+    const { version, isLatest } = await fetchLatestBaileysVersion();
+    
+    info(`:laptop: Running baileys version v${version} :: Is latest version: ${isLatest}`);
     
     // Create the actual socket 
     const sock = makeWASocket({
@@ -31,7 +33,7 @@ export default async function createSocket (authFolder) {
     })
     
     sock.ev.on("creds.update", saveCreds);  // IMPORTANT!!! If you do not save creds, you will have to repair your bot each time the bot restarts
-    success("Created socket successfully!");
+    success(":plug: Created socket successfully!");
     
     return sock;
 }

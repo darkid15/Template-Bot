@@ -28,7 +28,7 @@ export function info (msg) {
     const timeStamp = new Date().toISOString();
     writeToFile("INFO", msg, timeStamp);
     const level = blue(`${timeStamp} - [ INFO ] ::`);
-    msg = parseEmojis(`:info:   ${msg}`);
+    msg = parseEmojis(`:info:    ${msg}`);
     console.log(`\n${level} ${msg}\n`);
 }
 
