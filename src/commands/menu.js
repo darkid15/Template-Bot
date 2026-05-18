@@ -9,7 +9,10 @@ export default {
     desc: "Show all available commands.",
     usage: ":prefix:menu",
     aliases: [],
-    execute: async ({ sock, m, commands, botName, prefix }) => {
+    execute: async ({ sock, m, commands, bot }) => {
+        const BOT = bot?.self;
+        const botName = BOT.name;
+        const prefix = BOT.prefix;
         try {
             let count;
             const userId = m.key.participant || m.key.remoteJid;
