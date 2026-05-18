@@ -1,9 +1,8 @@
 // src/socket/index.js 
 
-import makeWASocket, {
-    useMultiFileAuthState,
-    fetchLatestBaileysVersion
-} from 'baileys';
+import makeWASocket, { fetchLatestBaileysVersion } from 'baileys';
+import useSqliteAuthState from "../auth-state.js"
+
 import fs from 'fs-extra';
 import PINO from 'pino';
 import { info, success } from '../utils/logger.js';
@@ -17,8 +16,8 @@ export default async function createSocket (authFolder) {
         };
     */
     // Using fs-extra 
-    fs.ensureDir(authFolder)    // Creates the directory if it doesn't exist, does nothing if it does. 
-    const { state, saveCreds } = await useMultiFileAuthState(authFolder);
+    fs.ensureDir(authFolder)    // Creates `~/Template-Bot/auth` (or your auth file name) 
+    const { state, saveCreds } = await useSqliteAuthState(`${authFolder}/auth.db`);
     const { version, isLatest } = await fetchLatestBaileysVersion();
     
     info(`:laptop: Running baileys version v${version} :: Is latest version: ${isLatest}`);
