@@ -4,8 +4,8 @@ import sendReply from '../utils/message/sendReply.js';
 import analyzeObject from '../utils/message/analyze.js';
 import { info, warn, error } from '../utils/logger.js';
 
-export default async function handleParticipantUpdates (sock, data, settings) {
-    const { master } = settings;
+export default async function handleParticipantUpdates (sock, data, bot) {
+    const master = bot?.master?.phone;
     try {
         // group jid, array of users, add/remove/promote/demote
         const { id, participants, action } = data;
@@ -30,14 +30,14 @@ export default async function handleParticipantUpdates (sock, data, settings) {
     
                 case "promote":
                     sendReply(sock, id, {
-                        text: `A fish rises to a dragon! @${cleanId}`,
+                        text: `A fish rises to a dragon! @${cleanId}\nCongrats on being promoted.`,
                         mentions: [userId]
                     });
                     break;
     
                 case "demote":
                     sendReply(sock, id, {
-                        text: `Oof! A demotion. @${cleanId}, maybe next time do your job right or something idrk`,
+                        text: `Oof! A demotion. Do better next time, @${cleanId}`,
                         mentions: [userId]
                     });
                     break;
