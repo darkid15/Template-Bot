@@ -1,0 +1,12 @@
+{
+    "bot": {
+        "name": "Template Bot",
+        "prefix": "!",
+        "phone": "",
+        "lid": ""
+    },
+    "master": {
+        "phone": "",
+        "lid": ""
+    }
+}

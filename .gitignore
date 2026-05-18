@@ -3,3 +3,4 @@ auth/
 package-lock.json
 .env
 .log
+src/data/bot.json
