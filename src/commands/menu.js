@@ -14,7 +14,7 @@ export default {
         const botName = BOT.name;
         const prefix = BOT.prefix;
         try {
-            let count;
+            let count = 0;
             const userId = m.key.participant || m.key.remoteJid;
             const cleanId = userId.split("@")[0];
             
