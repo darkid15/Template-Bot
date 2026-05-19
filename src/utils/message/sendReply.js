@@ -35,7 +35,7 @@ export default async function sendReply(sock, msg, content, options={}) {
         // Handle local file paths automatically
         if (content.image && typeof content.image === "string") {
             if (isUrl(content.image)) content.image = { url: content.image }
-            else content = fs.readFileSync(content.image)
+            else content.image = fs.readFileSync(content.image)
             // Use emoji parsers for captions
             let parsed = parseEmojis(content.caption);
             parsed += poweredBy;
