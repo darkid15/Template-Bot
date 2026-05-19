@@ -1,7 +1,7 @@
 // src/utils/auth.js
 
 import { jidDecode } from 'baileys';
-import { roles } from '../../config/index.js';
+import { roles } from '../../configs/index.js';
 
 /**
  * Decode sender into real phone number
