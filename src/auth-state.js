@@ -44,7 +44,7 @@ const useSqliteAuthState = async (filename = 'session.db', sessionId = 'default'
             get: async (type, ids) => {
                 const data = {};
                 for (const id of ids) {
-                    const keyId = `\( {sessionId}: \){type}-${id}`;
+                    const keyId = `${sessionId}:${type}-${id}`;
                     const row = getKeyStmt.get(keyId);
 
                     if (row?.value) {
@@ -64,7 +64,7 @@ const useSqliteAuthState = async (filename = 'session.db', sessionId = 'default'
             set: async (data) => {
                 for (const category in data) {
                     for (const id in data[category]) {
-                        const keyId = `\( {sessionId}: \){category}-${id}`;
+                        const keyId = `${sessionId}:${category}-${id}`;
                         const value = data[category][id];
 
                         if (value) {
