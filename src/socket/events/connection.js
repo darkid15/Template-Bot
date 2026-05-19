@@ -13,6 +13,7 @@ let reconnectInSecs = 2;
 let pairCodeRequested = false;
 let qrRequested = false;
 let isProcessing = false;
+let latestQr = null
 
 export default async function handleConnUpdates (sock, update, settings) {
     try {
@@ -20,7 +21,10 @@ export default async function handleConnUpdates (sock, update, settings) {
         //isProcessing = true;
         info(":internet: Handling connection updates...")
         const { connection, qr, lastDisconnect } = update;
-        const { pairCodeLogin, reconnect, isRegistered, bot } = settings;
+        const { pairCodeLogin, reconnect, bot } = settings;
+        const isRegistered = sock.authState?.creds?.registered || false;
+
+        if (qr) latestQr = qr;
 
         const BOT = bot.self;
         const phone = BOT.phone || "";
@@ -32,8 +36,8 @@ export default async function handleConnUpdates (sock, update, settings) {
             info(":robot: Bot is connecting...")
             // Request pair code 
             pairCodeRequested = true;   // Do not request pair code more than once 
-            qrRequested = true;    // Do not print QR while pair code is being requested. 
-            const delayInSecs = 5
+            // qrRequested = true;    // Do not print QR while pair code is being requested. 
+            const delayInSecs = 8;
             info(`:phone: Requesting pairing code in ${delayInSecs}secs...`);
             try {
                 setTimeout(async () => {
@@ -42,11 +46,11 @@ export default async function handleConnUpdates (sock, update, settings) {
                         warn(res.message);
                         // Fall back to qr 
                         await sleep(5);
-                        if (!qr) {
-                            warn("Error! No qr string provided!");
-                            process.exit(0);
+                        if (latestQr) {
+                            qrRequested = true;
+                            await handleQrCode(latestQr);
                         } else {
-                            await handleQrCode(qr);
+                            warn("QR not received yet. Waiting for next update...");
                         }
                     } else {
                         success(res.message);
@@ -65,11 +69,18 @@ export default async function handleConnUpdates (sock, update, settings) {
               - qr string is provided by baileys
               - QR has NOT been requested previously
         */
-        if (!isRegistered && !pairCodeLogin && qr && !qrRequested) {
-            await handleQrCode(qr)
+        if (qr) {
+            latestQr = qr;
+            if (!isRegistered && !qrRequested) {
+                qrRequested = true;
+                await handleQrCode(qr)
+            }
         }
         
         if (connection === "close") {
+            pairCodeRequested = false;
+            qrRequested = false;
+            latestQr = null;
             const err = lastDisconnect?.error;
             const statusCode = err?.output?.statusCode;
             warn(`:error: ${err}`)
