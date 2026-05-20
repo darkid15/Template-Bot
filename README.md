@@ -121,32 +121,24 @@ export default {
 And you're done!
 
 ## Screenshots
-<summary>
-    <p>Startup Screenshots</p>
-    <details>
-        <p align="center">
-          <img src="./assets/startup.jpg" width="700"/>
-        </p>
-    </details>
-</summary>
+### Startup
+<details>
+    <summary>View</summary>
+    <p align="center">
+      <img src="./assets/startup.jpg" width="700"/>
+    </p>
+    <p align="center">
+      <img src="./assets/startup2.jpg" width="700"/>
+    </p>
+</details>
 
-<summary>
-    <p>Menu Screenshot</p>
-    <details>
-        <p align="center">
-          <img src="./assets/menu.png" width="700"/>
-        </p>
-    </details>
-</summary>
-
-<summary>
-    <p>Connection Screenshot</p>
-    <details>
-        <p align="center">
-            <img src="./assets/connection.jpg" width="700">
-        </p>
-    </details>
-</summary>
+### Connection and Menu
+<details>
+    <summary>View</summary>
+    <p align="center">
+      <img src="./assets/menu.png" width="700"/>
+    </p>
+</details>
 
 ## Features
 ### Main 
