@@ -2,7 +2,7 @@
 ![Node.js](https://img.shields.io/badge/Node.js-v20+-green)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Branch](https://img.shields.io/badge/branch-beginner-orange)
-<p>Welcome to Template Bot `beginner` branch.</p>
+<p>Welcome to Template Bot <i>beginner</i> branch.</p>
 <p>A clean, modular WhatsApp bot starter template built to teach proper bot architecture, scalable code structure, and beginner-friendly development.</p>
 <p>No spaghetti code. No 5,000-line index.js files. No copy-paste chaos. Just readable, extendable, production-style bot development.</p>
 <p>Built for developers who want to understand, not just copy-paste.</p>
@@ -73,7 +73,7 @@ cd Template-Bot
 npm install
 ```
 #### Environment Variables
-Rename the `.env.example` or create a new `.env` file, then configure your bot details.
+Rename `.env.example` or create a new `.env` file, then configure your bot details.
 ```env
 BOT_PREFIX=!
 BOT_NAME="Template Bot"
@@ -136,7 +136,7 @@ And you're done!
 <details>
     <summary>View</summary>
     <p align="center">
-      <img src="./assets/menu.png" width="700"/>
+      <img src="./assets/menu.jpg" width="700"/>
     </p>
 </details>
 
