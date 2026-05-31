@@ -11,10 +11,10 @@ export async function handlePairCode (sock, phone) {
     }
     try{
         const code = await sock.requestPairingCode(phone, "TMPLTBOT");
-        message = `${"=".repeat(20)}
-   :phone: Requested pair code for ${phone}!
-   :phone: Your Pair Code: ${code || "No Pair Code Generated"}
-${"=".repeat(20)}\n`;
+        message = `# ${"=".repeat(20)}
+#    :phone: Requested pair code for ${phone}!
+#    :phone: Your Pair Code: ${code || "No Pair Code Generated"}
+# ${"=".repeat(20)}\n`;
         return {
             success: true,
             message
