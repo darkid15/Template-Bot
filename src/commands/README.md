@@ -1,9 +1,10 @@
 # Template Bot Commands
 
-## Jump Tob
+## Table of Contents
 - [Commands Structure](#commands-structure)
 - [Breakdown](#command-object-breakdown)
-- [Adding New Commands](#)
+- [Adding New Commands](#adding-a-new-command)
+    - [Command Execution Parameters](#command-execution-parameters)
 - [Structure Enforcement](#structure-enforcement)
 
 ## Commands Structure

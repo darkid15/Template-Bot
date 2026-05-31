@@ -20,12 +20,13 @@ export default {
             
             const groups = { };
             for (const c of commands.values()) {
-                if (c.hidden) continue;
+                if (c.hidden) continue;    // Ignore hidden commands 
                 if (!groups[c.category]) groups[c.category] = [];
                 groups[c.category].push(c);
                 count++;
             }
-            const bottomBar ="|----------------------------"
+            const bottomBar ="|----------------------------"    
+            // ask AI to generate Unicode characters to replace the ASCII characters here
             
             let menuText = `${"-".repeat(10)}{ ${botName} }${"-".repeat(10)}
 |${"-".repeat(35)}|
@@ -44,6 +45,7 @@ ${bottomBar}
             }
             
             menuText += `
+Total Commands: ${count}
 Thank you for using ${botName}, @${cleanId}!
         
 *Bot Version*: *1.0.0*`;

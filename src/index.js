@@ -7,9 +7,9 @@ import { getBotCfgs } from './configs/index.js';
 
 async function startBot () {
     let botName = "Template-Bot";
+	const bot = await getBotCfgs();
+    botName = bot?.self?.name;
     try {
-        const bot = await getBotCfgs();
-        botName = bot?.self?.name;
         info(`Starting ${botName}...`)
         const sock = await createSocket("auth");    // Creates a folder in the project root directory named "auth". 
         
@@ -22,7 +22,6 @@ async function startBot () {
         await handleSocketEvents(sock, {
             pairCodeLogin: true,
             reconnect: startBot,
-            isRegistered,
             bot 
         });
     } catch (err) {
