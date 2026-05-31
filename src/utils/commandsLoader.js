@@ -39,6 +39,6 @@ export default async function loadCommands() {
             );
         }
     }
-    info(`Loaded Commands: ${commands.size || aliases.size || 0}`);
+    info(`:fix: Loaded Commands: ${commands.size || aliases.size || 0}`);
     return { commands, aliases };
 }

@@ -1,5 +1,5 @@
 {
-    "prefix": "!",
+    "prefix": "/",
     "info": "ℹ️",
     "error": "❌",
     "success": "✅",
@@ -19,6 +19,7 @@
     "skull": "💀",
     "sparkles": "✨",
     "pin": "📌",
+    "pin2": "📍",
     "gear": "⚙️",
     "fix": "🛠",
     "folder": "📂",
@@ -60,7 +61,8 @@
     "brain": "🧠",
     "laptop": "💻",
     "infinity": "♾️",
-    "green": "🟢",
+    "greenBall": "🟢",
+    "redBall": "🔴",
     "run": "🔼",
     "exclaim1": "❗",
     "exclaim2": "‼️",
@@ -84,5 +86,9 @@
     "internet": "🌐",
     "msgBubble": "💬",
     "candle": "💈",
-    "wave": "👋"
+    "wave": "👋",
+    "phone": "📱",
+    "robot": "🤖",
+    "trashCan": "🗑️",
+    "plug": "🔌"
 }

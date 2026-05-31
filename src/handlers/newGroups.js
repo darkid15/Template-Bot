@@ -14,8 +14,8 @@ Useful for:
 - setup welcome configs
 */
 
-export default async function handleCreated(sock, groups, settings) {
-    const { master } = settings;
+export default async function handleCreated(sock, groups, bot) {
+    const master  = bot?.master?.phone;
     let message;
     try {
         for (const group of groups) {

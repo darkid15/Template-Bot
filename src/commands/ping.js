@@ -10,7 +10,8 @@ export default {
     desc: "Measure bot latency and display system info",
     usage: ":prefix:ping",
     aliases: ["status", "alive"],
-    execute: async ({ sock, m, botName }) => {
+    execute: async ({ sock, m, bot }) => {
+        const botName = bot?.self?.name;
         try {
             const start = Date.now();
             

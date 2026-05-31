@@ -1,5 +1,8 @@
 # Template Bot
-<p>Welcome to Template Bot `beginner` branch.</p>
+![Node.js](https://img.shields.io/badge/Node.js-v20+-green)
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Branch](https://img.shields.io/badge/branch-beginner-orange)
+<p>Welcome to Template Bot <i>beginner</i> branch.</p>
 <p>A clean, modular WhatsApp bot starter template built to teach proper bot architecture, scalable code structure, and beginner-friendly development.</p>
 <p>No spaghetti code. No 5,000-line index.js files. No copy-paste chaos. Just readable, extendable, production-style bot development.</p>
 <p>Built for developers who want to understand, not just copy-paste.</p>
@@ -25,7 +28,19 @@ This project exists to show:
 - Maintainable projects.
 - Not spaghetti.
 
+The project evolves across multiple branches:
+- beginner → foundational architecture
+- advanced → production systems
+- senior → framework-level features
+
 ## Table of Contents
+- [Quick Start](#quick-start)
+    - [Requirements](#requirements)
+    - [Installation](#installation)
+        - [Clone The Repo](#clone-the-repo)
+        - [Install Dependencies](#install-all-dependencies)
+        - [Start The Bot](#start-the-bot)
+- [Screenshots](#screenshots)
 - [Features](#features)
     - [Main](#main)
     - [Commands](#commands)
@@ -33,29 +48,115 @@ This project exists to show:
 - [Project Structure](#project-structure)
 - [Philosophy](#philosophy)
 - [Feature Plans](#template-bot-feature-plans)
-- [Installation](#installation)
-    - [Clone The Repo](#clone-the-repo)
-    - [Install Dependencies](#install-all-dependencies)
-    - [Start The Bot](#start-the-bot)
 - [License](#license)
+
+## Quick Start
+### Requirements
+**NOTE**: Template Bot is actively developed on `Termux`, `Nodejs`, `Baileys` (formerly `@whiskeysockets/baileys`)...
+#### PC
+- Node.js v20+
+- npm
+- WhatsApp account
+#### Termux
+- An Android device (Smartphone / Tablet)
+- Node.js v20+
+- npm
+- Whatsapp account
+### Installation
+#### Clone The Repo 
+```bash
+git clone https://github.com/darkid15/template-bot.git
+```
+#### Install All Dependencies
+```bash
+cd Template-Bot
+npm install
+```
+#### Environment Variables
+Rename `.env.example` or create a new `.env` file, then configure your bot details.
+```env
+BOT_PREFIX=!
+BOT_NAME="Template Bot"
+BOT_PHONE=23480xxxxxxxxx37
+MASTER_PHONE=4467xxxxxxxxx85
+```
+#### Start the bot 
+```bash
+npm start
+```
+**All together**:
+```bash
+git clone https://github.com/darkid15/template-bot.git
+cd Template-Bot
+npm install
+npm start
+```
+### Logging in
+Template Bot uses pair code login as default and QR as a fallback on fail. Feel free to change this in the [connection handler](./src/socket/events/connection.js) module.
+1. Enter pair code/ scan QR.
+2. Open Whatsapp
+3. Send `!menu`
+
+
+### Creating Commands
+
+All commands live inside:
+```txt
+src/commands/
+```
+Example:
+```js
+import sendReply from '../utils/message/sendReply.js';
+
+export default {
+    name: "hello",
+    category: "fun",
+    desc: "Say hello",
+
+    execute: async ({ sock, m }) => {
+        await sendReply(sock, m, "Hello World!");
+    }
+}
+```
+And you're done!
+
+## Screenshots
+### Startup
+<details>
+    <summary>View</summary>
+    <p align="center">
+      <img src="./assets/startup.jpg" width="700"/>
+    </p>
+    <p align="center">
+      <img src="./assets/startup2.jpg" width="700"/>
+    </p>
+</details>
+
+### Connection and Menu
+<details>
+    <summary>View</summary>
+    <p align="center">
+      <img src="./assets/menu.jpg" width="700"/>
+    </p>
+</details>
 
 ## Features
 ### Main 
-- Event-based architecture
-- Clean folder structure
-- Beginner-friendly code comments
-- Scalable project design
-- Event auto-loader
+- Event-based architecture (current)
+- Clean folder structure (current)
+- Beginner-friendly code comments (current)
+- Scalable project design (current)
+- Event auto-loader (current)
 ### Commands 
-- Modular command handler
-- Command auto-loader
-- Easy command creation
-- Group feature support
+- Modular command handler (current)
+- Command auto-loader (current)
+- Easy command creation (current)
+- Group feature support (current)
 ### Extra 
-- Cooldown system
-- Permissions system
-- Logging system
-- Production-style development workflow
+- Cooldown system (planned)
+- Permissions system (planned)
+- Logging system (current)
+- Production-style development workflow (current)
 
 
 ## Project Structure
@@ -121,7 +222,8 @@ Because scalable code matters.
 | --- | --- | --- |
 | Command Handler | ✓ | beginner |
 | Event Loader | ✓ | beginner |
-| Welcome / Goodbye System | x | beginner |
+| Welcome / Goodbye System | ✓ | beginner |
+| Auth System | ✓ | beginner |
 | Dashboard | x | advanced |
 | Anti-link System | x | advanced |
 | Anti-spam System | x | advanced |
@@ -133,27 +235,7 @@ Because scalable code matters.
 This is a foundation.
 **Build on it**.
 
-## Installation
-### Clone The Repo 
-```bash
-git clone https://github.com/darkid15/template-bot.git
-```
-### Install All Dependencies
-```bash
-cd Template-Bot
-npm install
-```
-### Start the bot 
-```bash
-npm start
-```
-All together:
-```bash
-git clone https://github.com/darkid15/template-bot.git
-cd Template-Bot
-npm install
-npm start
-```
+
 ### Contributing?
 Good architecture only.
 No spaghetti PRs.

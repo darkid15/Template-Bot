@@ -9,20 +9,24 @@ export default {
     desc: "Show all available commands.",
     usage: ":prefix:menu",
     aliases: [],
-    execute: async ({ sock, m, commands, botName, prefix }) => {
+    execute: async ({ sock, m, commands, bot }) => {
+        const BOT = bot?.self;
+        const botName = BOT.name;
+        const prefix = BOT.prefix;
         try {
-            let count;
+            let count = 0;
             const userId = m.key.participant || m.key.remoteJid;
             const cleanId = userId.split("@")[0];
             
             const groups = { };
             for (const c of commands.values()) {
-                if (c.hidden) continue;
+                if (c.hidden) continue;    // Ignore hidden commands 
                 if (!groups[c.category]) groups[c.category] = [];
                 groups[c.category].push(c);
                 count++;
             }
-            const bottomBar ="|----------------------------"
+            const bottomBar ="|----------------------------"    
+            // ask AI to generate Unicode characters to replace the ASCII characters here
             
             let menuText = `${"-".repeat(10)}{ ${botName} }${"-".repeat(10)}
 |${"-".repeat(35)}|
@@ -41,6 +45,7 @@ ${bottomBar}
             }
             
             menuText += `
+Total Commands: ${count}
 Thank you for using ${botName}, @${cleanId}!
         
 *Bot Version*: *1.0.0*`;

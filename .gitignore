@@ -2,5 +2,5 @@ node_modules/
 auth/
 package-lock.json
 .env
-groq.js
 .log
+src/data/bot.json

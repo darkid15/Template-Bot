@@ -19,7 +19,6 @@ const isUrl = (str) => /^https?:\/\//.test(str);
 export default async function sendReply(sock, msg, content, options={}) {
     try {
         let jid = msg?.key?.remoteJid || msg;
-        if (options.jid) jid = options.jid;
     
         // If content is just a string convert it to text message
         if (typeof content === "string") {
@@ -35,7 +34,7 @@ export default async function sendReply(sock, msg, content, options={}) {
         // Handle local file paths automatically
         if (content.image && typeof content.image === "string") {
             if (isUrl(content.image)) content.image = { url: content.image }
-            else content = fs.readFileSync(content.image)
+            else content.image = fs.readFileSync(content.image)
             // Use emoji parsers for captions
             let parsed = parseEmojis(content.caption);
             parsed += poweredBy;
@@ -52,10 +51,16 @@ export default async function sendReply(sock, msg, content, options={}) {
     
         if (content.audio && typeof content.audio === "string") {
             content.audio = fs.readFileSync(content.audio);
+            let parsed = parseEmojis(content.caption);
+            parsed += poweredBy;
+            content.caption = parsed;
         }
     
         if (content.document && typeof content.document === "string") {
             content.document = fs.readFileSync(content.document);
+            let parsed = parseEmojis(content.caption);
+            parsed += poweredBy;
+            content.caption = parsed;
         }
     
         if (content.sticker && typeof content.sticker === "string") {
