@@ -13,12 +13,11 @@ let reconnectInSecs = 2;
 let pairCodeRequested = false;
 let qrRequested = false;
 let isProcessing = false;
-let latestQr = null
+let latestQr = null;
+let isFirstConnect = true;
 
 export default async function handleConnUpdates (sock, update, settings) {
     try {
-        //if (isProcessing) return // warn("Conn handling in process!");
-        //isProcessing = true;
         info(":internet: Handling connection updates...")
         const { connection, qr, lastDisconnect } = update;
         const { pairCodeLogin, reconnect, bot } = settings;
@@ -37,7 +36,7 @@ export default async function handleConnUpdates (sock, update, settings) {
             // Request pair code 
             pairCodeRequested = true;   // Do not request pair code more than once 
             // qrRequested = true;    // Do not print QR while pair code is being requested. 
-            const delayInSecs = 8;
+            const delayInSecs = 5;
             info(`:phone: Requesting pairing code in ${delayInSecs}secs...`);
             try {
                 setTimeout(async () => {
@@ -97,8 +96,9 @@ export default async function handleConnUpdates (sock, update, settings) {
         */
         if (connection === "open") {
             success(":robot: Bot is connected!");
-            reconnectInSecs = 4;
-            setTimeout(() => {
+            reconnectInSecs = 2;
+            if (isFirstConnect) {
+				sleep(5);
                 sendReply(sock, `${master}@s.whatsapp.net`, `Connection Status: Stable :greenBall:
 :success: *${botName}* is connected _successfully_!
 
@@ -108,7 +108,8 @@ export default async function handleConnUpdates (sock, update, settings) {
 • :gear: Prefix: [ *${prefix}* ]
 • :phone: Bot Phone: [ *${phone}* ]
 • :phone: Master Phone: [ *${master}* ]`);
-            }, 5000);
+				isFirstConnect = false;
+			};
         }
     } catch (err) {
         error(`:exclaim2: Connection handler error: ${err.stack || err.message || err}`);
