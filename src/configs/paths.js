@@ -10,7 +10,7 @@ export const configDir = path.join(src, "configs");
 export const dataDir = path.join(src, "data");
 export const utilsDir = path.join(src, "utils");
 export const assetsDir = path.join(src, "assets");
+export const logFolder = path.join(dataDir, "logs");
 
-export const logFile = path.join(dataDir, ".log");
 export const botData = path.join(dataDir, "bot.json");
 export const botExample = path.join(dataDir, "bot.example.json");
