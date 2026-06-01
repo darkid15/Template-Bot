@@ -5,13 +5,13 @@ import handleSocketEvents from './socket/events/index.js'
 import { info, error } from './utils/logger.js';
 import { getBotCfgs } from './configs/index.js';
 
-async function startBot () {
+async function startBot (user) {
     let botName = "Template-Bot";
 	const bot = await getBotCfgs();
     botName = bot?.self?.name;
     try {
-        info(`Starting ${botName}...`)
-        const sock = await createSocket("auth");    // Creates a folder in the project root directory named "auth". 
+        info(`Starting ${botName} for ${user} user...`)
+        const sock = await createSocket("auth", user);    // Creates a folder in the project root directory named "auth". 
         
         const isRegistered = sock.authState.creds.registered;
         /*
@@ -22,6 +22,7 @@ async function startBot () {
         await handleSocketEvents(sock, {
             pairCodeLogin: true,
             reconnect: startBot,
+			user,
             bot 
         });
     } catch (err) {
@@ -30,5 +31,9 @@ async function startBot () {
     }
 }
 
-startBot()
-process.stdin.resume();
+const users = ['default', 'darkid'];
+
+for (const user of users) {
+	startBot(user)
+	process.stdin.resume();
+}
