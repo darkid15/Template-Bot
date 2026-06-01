@@ -2,7 +2,7 @@
 
 import createSocket from './socket/index.js';
 import handleSocketEvents from './socket/events/index.js'
-import { info, error } from './utils/logger.js';
+import createLogger from './utils/logger.js';
 import { getBotCfgs } from './configs/index.js';
 
 async function startBot (user) {
@@ -12,8 +12,6 @@ async function startBot (user) {
     try {
         info(`Starting ${botName} for ${user} user...`)
         const sock = await createSocket("auth", user);    // Creates a folder in the project root directory named "auth". 
-        
-        const isRegistered = sock.authState.creds.registered;
         /*
           Handles socket events:
             - sock.ev.on("connection.update", ()=>{...}) 
