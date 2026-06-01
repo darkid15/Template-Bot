@@ -1,7 +1,6 @@
 // src/utils/message/extractText.js 
 
 import { getContentType } from 'baileys';
-import { error } from '../logger.js';
 
 export default function extractText (m) {
     const contentType = getContentType(m.message);
@@ -18,6 +17,6 @@ export default function extractText (m) {
                 return content.caption || "";
         }
     } catch (err) {
-        error(`Error extracting text: ${err.stack || err}`)
+        console.error(`Error extracting text: ${err.stack || err}`)
     }
 }

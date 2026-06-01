@@ -2,7 +2,6 @@
 
 import fs from 'fs';
 import parseEmojis from './emojis.js';
-import { error } from '../logger.js';
 
 /**
  * sendReply
@@ -78,6 +77,6 @@ export default async function sendReply(sock, msg, content, options={}) {
             sendOptions
         );
     } catch (err) {
-        error(`Error sending reply: ${err.stack || err.message || err}`);
+        console.error(`Error sending reply: ${err.stack || err.message || err}`);
     }
 }

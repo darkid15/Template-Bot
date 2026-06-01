@@ -1,7 +1,6 @@
 // src/utils/json.js
 
 import fs from 'fs-extra';
-import { error } from './logger.js';
 
 /**
  * Read JSON file safely
@@ -16,7 +15,7 @@ export async function readJSON(filePath, defaultValue = {}) {
         const data = await fs.readJson(filePath);
         return data;
     } catch (err) {
-        error(`Error reading JSON: ${filePath}\n`, err);
+        console.error(`Error reading JSON: ${filePath}\n`, err);
         return defaultValue;
     }
 }
@@ -32,7 +31,7 @@ export async function writeJSON(filePath, data) {
         await fs.writeJson(filePath, data, { spaces: 4 });
         return true;
     } catch (err) {
-        error(`Error writing JSON: ${filePath}\n`, err);
+        console.error(`Error writing JSON: ${filePath}\n`, err);
         return false;
     }
 }
@@ -50,7 +49,7 @@ export async function updateJSON(filePath, updater) {
         await writeJSON(filePath, updated);
         return updated;
     } catch (err) {
-        error(`Error updating JSON: ${filePath}\n`, err);
+        console.error(`Error updating JSON: ${filePath}\n`, err);
         return null;
     }
 }

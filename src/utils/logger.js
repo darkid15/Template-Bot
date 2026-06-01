@@ -12,7 +12,7 @@ const red = chalk.red;
 
 export default function createLogger (user) {
 	fs.ensureDirSync(logFolder);
-	const logFile = `${logFolder}/${user}.log`;
+	const logFile = `${logFolder}/usr-${user}.log`;
 	function writeToFile (level, msg, time) {
 	    let fullLog = `\n[ ${level} ] :: [ ${user} ] - ${msg} :: (${time})\n`;
 	    fullLog = parseEmojis(fullLog);

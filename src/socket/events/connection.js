@@ -5,7 +5,6 @@ import {
     handleQrCode
 } from '../pairing.js';
 import sendReply from '../../utils/message/sendReply.js';
-import { info, warn, error, success } from '../../utils/logger.js';
 import { sleep } from "../../utils/utils.js";
 
 
@@ -17,10 +16,11 @@ let latestQr = null;
 let isFirstConnect = true;
 
 export default async function handleConnUpdates (sock, update, settings) {
+	const { pairCodeLogin, reconnect, user, bot, logger } = settings;
+	const { info, warn, error, success } = logger;
     try {
         info(":internet: Handling connection updates...")
         const { connection, qr, lastDisconnect } = update;
-        const { pairCodeLogin, reconnect, user, bot } = settings;
         const isRegistered = sock.authState?.creds?.registered || false;
 
         if (qr) latestQr = qr;
@@ -47,7 +47,8 @@ export default async function handleConnUpdates (sock, update, settings) {
                         await sleep(5);
                         if (latestQr) {
                             qrRequested = true;
-                            await handleQrCode(latestQr);
+                            const qr = await handleQrCode(latestQr);
+							if (!qr.success) warn(qr.message)
                         } else {
                             warn("QR not received yet. Waiting for next update...");
                         }
@@ -72,7 +73,8 @@ export default async function handleConnUpdates (sock, update, settings) {
             latestQr = qr;
             if (!isRegistered && !qrRequested) {
                 qrRequested = true;
-                await handleQrCode(qr)
+                const res = await handleQrCode(qr)
+				if (!res.success) warn(res.message)
             }
         }
         

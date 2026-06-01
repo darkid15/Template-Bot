@@ -7,13 +7,13 @@ import { getBotCfgs } from './configs/index.js';
 
 async function startBot (user='default') {
     let botName = "Template-Bot";
-	const bot = await getBotCfgs();
-    botName = bot?.self?.name;
 	// Create user sensitive logger instance 
 	const logger = await createLogger(user);
+	const bot = await getBotCfgs(logger);
+    botName = bot?.self?.name;
     try {
         logger.info(`Starting ${botName} for ${user} user...`)
-        const sock = await createSocket("auth", user);    // Creates a folder in the project root directory named "auth". 
+        const sock = await createSocket("auth", logger, user);    // Creates a folder in the project root directory named "auth". 
 
         /*
           Handles socket events:

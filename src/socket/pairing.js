@@ -1,7 +1,6 @@
 // src/socket/pairing.js 
 
 import qrcode from 'qrcode-terminal';
-import { error } from '../utils/logger.js';
 
 export async function handlePairCode (sock, phone) {
     let message;
@@ -29,11 +28,15 @@ export async function handlePairCode (sock, phone) {
 }
 
 export async function handleQrCode (qr) {
-    if (!qr || qr.length === 0) return error(`No qr string provided!`)
+    if (!qr || qr.length === 0) return { success: false, message: `No qr string provided!` }
     try {
         console.log(`\n${"=".repeat(40)}\n   Scan this qr to connect the bot`)
         await qrcode.generate(qr, { small: true})
+		return { success: true };
     } catch (err) {
-        error(`Error generating QR login code: ${err.message || err.stack || err}`)
+        return { 
+			success: false, 
+			message: `Error generating QR code: ${err.message || err.stack || err}`
+		}
     }
 }

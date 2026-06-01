@@ -2,7 +2,6 @@
 
 import sendReply from '../utils/message/sendReply.js';
 import analyzeObject from '../utils/message/analyze.js';
-import { info, warn } from '../utils/logger.js';
 
 /*
 Handles:
@@ -14,7 +13,9 @@ Useful for:
 - setup welcome configs
 */
 
-export default async function handleCreated(sock, groups, bot) {
+export default async function handleCreated(sock, groups, settings) {
+	const { bot, logger } = settings;
+	const { info, warn } = logger;
     const master  = bot?.master?.phone;
     let message;
     try {

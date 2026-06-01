@@ -1,7 +1,6 @@
 // src/commands/echo.js 
 
 import sendQueuedReply from '../utils/message/replyQueue.js';
-import { warn } from '../utils/logger.js';
 
 export default {
     name: "echo",
@@ -9,7 +8,8 @@ export default {
     desc: "Repeat the user's message",
     usage: ":prefix:echo [ message ]",
     aliases: ["repeat", "say"],
-    execute: async ({ sock, m, args }) => {
+    execute: async ({ sock, m, args, logger }) => {
+		const { warn } = logger;
         try {
             if (!args || args.length === 0) {
                 return sendQueuedReply(sock, m, `:error: Provide arguments, Baka!

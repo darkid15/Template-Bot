@@ -4,7 +4,6 @@ import {
     readJSON,
     writeJSON
 } from '../json.js';
-import { info, warn } from '../logger.js';
 import { botData } from '../../configs/paths.js';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -31,7 +30,7 @@ const defaultBotData = {
 // Cache
 let cachedConfig = null;
 
-export default async function getBotConfigs() {
+export default async function getBotConfigs(logger) {
     // Return cache if already loaded
     if (cachedConfig) {
         return cachedConfig;
@@ -44,7 +43,7 @@ export default async function getBotConfigs() {
     if (!config) {
         config = defaultBotData;
         await writeJSON(botData, config);
-        info(":success: Created bot config file.");
+        logger.info(":success: Created bot config file.");
     }
 
     // Cache config

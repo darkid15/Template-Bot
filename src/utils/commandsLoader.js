@@ -4,9 +4,8 @@ import { cmdDir } from '../configs/paths.js';
 import fs from 'fs';
 import path from 'path';
 import { pathToFileURL } from "url";
-import { info, warn } from  './logger.js';
 
-export default async function loadCommands() {
+export default async function loadCommands(logger) {
     const files = fs.readdirSync(cmdDir).filter(f => f.endsWith(".js"));
 
     const commands = new Map();
@@ -34,11 +33,11 @@ export default async function loadCommands() {
             }
 
         } catch (err) {
-            warn(
+            logger.warn(
                 `Error loading command: ${file}\nError: ${err.stack || err.message || err}`
             );
         }
     }
-    info(`:fix: Loaded Commands: ${commands.size || aliases.size || 0}`);
+    logger.info(`:fix: Loaded Commands: ${commands.size || aliases.size || 0}`);
     return { commands, aliases };
 }

@@ -2,7 +2,6 @@
 
 import os from 'os';
 import sendReply from '../utils/message/sendReply.js';
-import { error } from '../utils/logger.js';
 
 export default {
     name: "ping",
@@ -10,7 +9,7 @@ export default {
     desc: "Measure bot latency and display system info",
     usage: ":prefix:ping",
     aliases: ["status", "alive"],
-    execute: async ({ sock, m, bot }) => {
+    execute: async ({ sock, m, bot, logger }) => {
         const botName = bot?.self?.name;
         try {
             const start = Date.now();
@@ -34,7 +33,7 @@ export default {
             return sendReply(sock, m, replyText);
         } catch (err) {
             await sendReply(sock, m, ":error: An error occured while fetching ping info.");
-            error(`Error fetching ping info: ${err.stack || err.message || err}`);
+            logger.error(`Error fetching ping info: ${err.stack || err.message || err}`);
             return;
         }
     }

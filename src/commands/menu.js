@@ -1,7 +1,6 @@
 // src/commands/menu.js 
 
 import sendReply from '../utils/message/sendReply.js';
-import { error } from '../utils/logger.js';
 
 export default {
     name: "menu",
@@ -9,10 +8,11 @@ export default {
     desc: "Show all available commands.",
     usage: ":prefix:menu",
     aliases: [],
-    execute: async ({ sock, m, commands, bot }) => {
+    execute: async ({ sock, m, commands, bot, logger }) => {
         const BOT = bot?.self;
         const botName = BOT.name;
         const prefix = BOT.prefix;
+		const { error } = logger;
         try {
             let count = 0;
             const userId = m.key.participant || m.key.remoteJid;

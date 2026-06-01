@@ -2,9 +2,10 @@
 
 import sendReply from '../utils/message/sendReply.js';
 import analyzeObject from '../utils/message/analyze.js';
-import { info, warn, error } from '../utils/logger.js';
 
-export default async function handleParticipantUpdates (sock, data, bot) {
+export default async function handleParticipantUpdates (sock, data, settings) {
+	const { bot, logger } = settings;
+	const { info, warn, error } = logger;
     const master = bot?.master?.phone;
     try {
         // group jid, array of users, add/remove/promote/demote

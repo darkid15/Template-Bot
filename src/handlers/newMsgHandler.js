@@ -3,11 +3,11 @@
 import extractText from '../utils/message/extractText.js'
 import analyzeObject from '../utils/message/analyze.js';
 import sendReply from '../utils/message/sendReply.js';
-import { info, warn, error } from '../utils/logger.js';
 import { readJSON } from '../utils/json.js';
 
-export default async function handleNewMessages (sock, m, cmds, bot) {
+export default async function handleNewMessages (sock, m, cmds, bot, logger) {
     const { commands, aliases } = cmds;
+	const { info, warn, error} = logger;
     
     const BOT = bot?.self;
     const prefix = BOT.prefix || "!";
@@ -37,7 +37,8 @@ export default async function handleNewMessages (sock, m, cmds, bot) {
                 args,       // type: Array 
                 bot,        // type: Object
                 commands,   // type: Map 
-                aliases     // type: Map
+                aliases,    // type: Map
+				logger		// type: Object - custom logger functions
             })
         } catch (err) {
             error(`Error running command: ${err.stack || err.message || err}\nCommand: ${cmdName}`)

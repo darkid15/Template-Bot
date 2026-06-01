@@ -5,9 +5,9 @@ import useSqlJsAuthState from "../auth-state.js"
 
 import fs from 'fs-extra';
 import PINO from 'pino';
-import { info, success } from '../utils/logger.js';
 
-export default async function createSocket (authFolder, user='default') {
+export default async function createSocket (authFolder, logger, user='default') {
+	const { info, success } = logger;
     info(":plug: Creating socket...");
     /*  First, make sure the sessions folder exists
         Using the regular fs module, it looks like:

@@ -1,8 +1,8 @@
 // src/utils/message/analyzeMsgobj..js 
 
-import { info } from '../logger.js';
 
-export default function analyzeObject(myObj) {
+export default function analyzeObject(myObj, logger) {
+	const { info } = logger;
     info("=== OBJECT BREAKDOWN ===");
 
     if (myObj?.key && myObj?.message) {
