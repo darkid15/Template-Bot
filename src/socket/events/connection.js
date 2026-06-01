@@ -20,7 +20,7 @@ export default async function handleConnUpdates (sock, update, settings) {
     try {
         info(":internet: Handling connection updates...")
         const { connection, qr, lastDisconnect } = update;
-        const { pairCodeLogin, reconnect, bot } = settings;
+        const { pairCodeLogin, reconnect, user, bot } = settings;
         const isRegistered = sock.authState?.creds?.registered || false;
 
         if (qr) latestQr = qr;
@@ -86,7 +86,7 @@ export default async function handleConnUpdates (sock, update, settings) {
             warn(`Status Code: ${statusCode}`)
             if (statusCode === 401) return error(":trashCan: Logged out. Delete sessions folder and retry.")
             info(`:cycle: Reconnecting in ${reconnectInSecs}secs...`)
-            setTimeout(reconnect, reconnectInSecs*1000)
+            setTimeout(async () => await reconnect(user), reconnectInSecs*1000)
             reconnectInSecs += 4;
             if (reconnectInSecs >= 30) reconnectInSecs = 4;
         }
