@@ -18,38 +18,20 @@ export default function createLogger (user) {
 	    fullLog = parseEmojis(fullLog);
 	    fs.appendFileSync(logFile, fullLog);
 	}
+
+    function log (level, color, msg) {
+        const timeStamp = new Date().toISOString();
+        writeToFile(level, msg, timeStamp);
+        const logLvl = color(`${timeStamp} - [ ${level} ] ::`);
+    
+        msg = parseEmojis(`:${level.toLowerCase()}: ${msg}`);
+        console.log(`\n${logLvl} [ ${user} ] ${msg}\n`);
+    }
 	
-	function success (msg) {
-	    const timeStamp = new Date().toISOString();
-	    writeToFile("SUCCESS", msg, timeStamp);
-	    const level = green(`${timeStamp} - [ SUCCESS ] ::`);
-	    msg = parseEmojis(`:success: ${msg}`);
-	    console.log(`\n${level} [ ${user} ] ${msg}\n`);
-	}
-	
-	function info (msg) {
-	    const timeStamp = new Date().toISOString();
-	    writeToFile("INFO", msg, timeStamp);
-	    const level = blue(`${timeStamp} - [ INFO ] ::`);
-	    msg = parseEmojis(`:info:    ${msg}`);
-	    console.log(`\n${level} [ ${user} ] ${msg}\n`);
-	}
-	
-	function warn (msg) {
-	    const timeStamp = new Date().toISOString();
-	    writeToFile("WARN", msg, timeStamp);
-	    const level = yellow(`${timeStamp} - [ WARN ] ::`);
-	    msg = parseEmojis(`:warning: ${msg}`);
-	    console.log(`\n${level} [ ${user} ] ${msg}\n`);
-	}
-	
-	function error (msg) {
-	    const timeStamp = new Date().toISOString();
-	    writeToFile("ERROR", msg, timeStamp);
-	    const level = red(`${timeStamp} - [ ERROR ] ::`);
-	    msg = parseEmojis(`:error: ${msg}`);
-	    console.log(`\n${level} [ ${user} ] ${msg}\n`);
-	}
+	const info = (msg) => log("INFO", blue, msg);
+    const success = (msg) => log("SUCCESS", green, msg);
+    const warn = (msg) => log("WARNING", yellow, msg);
+    const error = (msg) => log("ERROR", red, msg);
 
 	return { info, success, warn, error}
 }
