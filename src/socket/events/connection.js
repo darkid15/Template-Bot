@@ -14,6 +14,7 @@ let qrRequested = false;
 let isProcessing = false;
 let latestQr = null;
 let isFirstConnect = true;
+let lastDisconnectMsg = null;
 
 export default async function handleConnUpdates (sock, update, settings) {
 	const { pairCodeLogin, reconnect, user, bot, logger } = settings;
@@ -84,6 +85,9 @@ export default async function handleConnUpdates (sock, update, settings) {
             latestQr = null;
             const err = lastDisconnect?.error;
             const statusCode = err?.output?.statusCode;
+
+			lastDisconnectMsg = err;
+			
             warn(`:error: ${err}`)
             warn(`Status Code: ${statusCode}`)
             if (statusCode === 401) return error(":trashCan: Logged out. Delete sessions folder and retry.")
