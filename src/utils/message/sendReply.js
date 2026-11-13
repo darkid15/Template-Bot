@@ -18,6 +18,7 @@ const isUrl = (str) => /^https?:\/\//.test(str);
 export default async function sendReply(sock, msg, content, options={}) {
     try {
         let jid = msg?.key?.remoteJid || msg;
+		if (options.jid) jid = options.jid;
     
         // If content is just a string convert it to text message
         if (typeof content === "string") {
